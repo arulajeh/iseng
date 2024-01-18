@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"html/template"
+	// "html/template"
 	"log"
 	"math"
 	"time"
@@ -50,24 +50,24 @@ func main() {
 	)
 
 	// Define the path to your HTML templates
-	templates := template.Must(template.ParseGlob("views/*.html"))
-	app.Static("/", "./public", fiber.Static{
-		Compress:      true,
-		ByteRange:     true,
-		Browse:        true,
-		MaxAge:        3600,
-		CacheDuration: 10 * time.Minute,
-	})
+	// templates := template.Must(template.ParseGlob("views/*.html"))
+	// app.Static("/", "./public", fiber.Static{
+	// 	Compress:      true,
+	// 	ByteRange:     true,
+	// 	Browse:        true,
+	// 	MaxAge:        3600,
+	// 	CacheDuration: 10 * time.Minute,
+	// })
 
 	// Register the template engine middleware
-	app.Use(func(c *fiber.Ctx) error {
-		c.Locals("templates", templates)
-		return c.Next()
-	})
+	// app.Use(func(c *fiber.Ctx) error {
+	// 	c.Locals("templates", templates)
+	// 	return c.Next()
+	// })
 
 	app.Get("/", func(c *fiber.Ctx) error {
 		// Render the HTML template
-		return c.Render("views/index.html", fiber.Map{})
+		return c.Render("index.html", fiber.Map{})
 	})
 
 	app.Post("/greetings", func(c *fiber.Ctx) error {
