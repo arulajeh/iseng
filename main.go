@@ -12,6 +12,7 @@ import (
 	"pertama_go/utils"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -48,6 +49,14 @@ func main() {
 			// Prefork:       true,
 		},
 	)
+
+	// Use CORS middleware
+	app.Use(cors.New(cors.Config{
+		AllowOrigins:     "*",
+		AllowMethods:     "GET, POST, PUT, DELETE",
+		ExposeHeaders:    "Content-Length",
+		AllowCredentials: true,
+	}))
 
 	// Define the path to your HTML templates
 	// templates := template.Must(template.ParseGlob("views/*.html"))
